@@ -5,15 +5,15 @@
 # Autor:        Patrick Asmus
 # Web:          https://www.media-techport.de
 # Git-Reposit.: https://git.media-techport.de/scriptos/docker-installer
-# Version:      3.1.2
-# Datum:        24.02.2024
-# Modifikation: user is now added to the docker group earlier
+# Version:      3.1.3
+# Datum:        10.03.2024
+# Modifikation: changed "COMPOSE_DIR"
 #####################################################
 
 # Variablen
 USER="root"
 DOCKER_ROOT_DIR="/docker"
-COMPOSE_DIR="/compose"
+COMPOSE_DIR="/docker-compose"
 
 # Docker installieren
 sudo apt update
