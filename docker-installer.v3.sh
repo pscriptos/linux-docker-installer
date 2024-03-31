@@ -3,11 +3,11 @@
 # Beschreibung: Docker & Docker-Compose installieren und Docker-Root-Verzeichnis ändern (Für Ubuntu)
 # Aufruf:       bash ./docker-installer.v3.sh
 # Autor:        Patrick Asmus
-# Web:          https://www.media-techport.de
-# Git-Reposit.: https://git.media-techport.de/scriptos/docker-installer
-# Version:      3.1.3
-# Datum:        10.03.2024
-# Modifikation: changed "COMPOSE_DIR"
+# Web:          https://www.techniverse.net
+# Git-Reposit.: https://git.techniverse.net/scriptos/docker-installer
+# Version:      3.2
+# Datum:        31.03.2024
+# Modifikation: Umstellung auf neue Domain
 #####################################################
 
 # Variablen
