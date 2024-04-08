@@ -1,13 +1,13 @@
 #!/bin/bash
 # Script Name:  docker-installer.v3.sh
-# Beschreibung: Docker & Docker-Compose installieren und Docker-Root-Verzeichnis ändern (Für Ubuntu)
+# Beschreibung: Docker & Docker-Compose Installer für "Ubuntu 22.04 Jammy" only
 # Aufruf:       bash ./docker-installer.v3.sh
 # Autor:        Patrick Asmus
 # Web:          https://www.techniverse.net
 # Git-Reposit.: https://git.techniverse.net/scriptos/docker-installer
-# Version:      3.2
+# Version:      3.2.1
 # Datum:        31.03.2024
-# Modifikation: Umstellung auf neue Domain
+# Modifikation: Filename changed
 #####################################################
 
 # Variablen
