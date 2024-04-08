@@ -4,11 +4,20 @@
 # Aufruf:       bash ./docker-installer.v3.sh
 # Autor:        Patrick Asmus
 # Web:          https://www.techniverse.net
-# Git-Reposit.: https://git.techniverse.net/scriptos/docker-installer
-# Version:      3.2.1
-# Datum:        31.03.2024
-# Modifikation: Filename changed
+# Git-Reposit.: https://git.techniverse.net/scriptos/linux-docker-installer
+# Version:      3.3
+# Datum:        08.04.2024
+# Modifikation: Script now checks OS before installation
 #####################################################
+
+# Betriebssystem und Version prüfen
+OS=$(lsb_release -is)
+VERSION=$(lsb_release -rs)
+
+if [ "$OS" != "Ubuntu" ] || [ "$VERSION" != "22.04" ]; then
+    echo "Dieses Script ist nur für Ubuntu 22.04 geeignet. Installation abgebrochen."
+    exit 1
+fi
 
 # Variablen
 USER="root"
@@ -24,7 +33,7 @@ sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
 
-# Docker-Root-Verzeichnis ändern
+# Docker-Root-Verzeichnis ändern & Compose Verzeichnis erstellen
 sudo systemctl stop docker
 sudo mkdir -p $DOCKER_ROOT_DIR
 echo "{\"data-root\": \"$DOCKER_ROOT_DIR\"}" | sudo tee /etc/docker/daemon.json
@@ -32,7 +41,6 @@ cp /var/lib/docker/* $DOCKER_ROOT_DIR
 rm -R /var/lib/docker
 sudo systemctl start docker
 
-# Erstelle Compose-Verzeichnis
 mkdir $COMPOSE_DIR
 
 # Docker-compose installieren
