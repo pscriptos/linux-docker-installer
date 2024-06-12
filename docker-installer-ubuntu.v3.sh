@@ -5,10 +5,13 @@
 # Autor:        Patrick Asmus
 # Web:          https://www.techniverse.net
 # Git-Reposit.: https://git.techniverse.net/scriptos/linux-docker-installer
-# Version:      3.4.1
+# Version:      3.4.2
 # Datum:        12.06.2024
-# Modifikation: Aktualisierung des Docker Compose-Installationsbefehls auf 'latest'
+# Modifikation: Docker-Compose Verion auf "v2.27.1" erhöht
 #####################################################
+
+# Variablen:
+COMPOSEVERSION="v2.27.1"
 
 # Betriebssystem und Version prüfen
 OS=$(lsb_release -is)
@@ -53,7 +56,7 @@ mkdir -p $COMPOSE_DIR
 
 # Docker-compose installieren (gleicher Prozess für beide Versionen)
 sudo apt install -y curl
-sudo curl -L "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/$COMPOSEVERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Optional: Plugin für Oh my ZSH aktivieren
