@@ -5,9 +5,9 @@
 # Autor:        Patrick Asmus
 # Web:          https://www.techniverse.net
 # Git-Reposit.: https://git.techniverse.net/scriptos/linux-docker-installer
-# Version:      3.4
+# Version:      3.4.1
 # Datum:        12.06.2024
-# Modifikation: Unterstützung für Ubuntu 24.04 hinzugefügt, OS-Prüfung aktualisiert
+# Modifikation: Aktualisierung des Docker Compose-Installationsbefehls auf 'latest'
 #####################################################
 
 # Betriebssystem und Version prüfen
@@ -53,7 +53,7 @@ mkdir -p $COMPOSE_DIR
 
 # Docker-compose installieren (gleicher Prozess für beide Versionen)
 sudo apt install -y curl
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Optional: Plugin für Oh my ZSH aktivieren
