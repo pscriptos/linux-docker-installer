@@ -5,9 +5,9 @@
 # Autor:        Patrick Asmus
 # Web:          https://www.techniverse.net
 # Git-Reposit.: https://git.techniverse.net/scriptos/linux-docker-installer
-# Version:      3.4.2
-# Datum:        12.06.2024
-# Modifikation: Docker-Compose Verion auf "v2.27.1" erhöht
+# Version:      3.4.3
+# Datum:        29.09.2024
+# Modifikation: docker bin directory moved
 #####################################################
 
 # Variablen:
@@ -24,7 +24,7 @@ fi
 
 # Variablen
 USER="root"
-DOCKER_ROOT_DIR="/docker"
+DOCKER_ROOT_DIR="/var/docker-bin"
 COMPOSE_DIR="/docker-compose"
 
 # Docker installieren
