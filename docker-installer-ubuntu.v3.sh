@@ -5,13 +5,13 @@
 # Autor:        Patrick Asmus
 # Web:          https://www.techniverse.net
 # Git-Reposit.: https://git.techniverse.net/scriptos/linux-docker-installer
-# Version:      3.4.4
+# Version:      3.4.5
 # Datum:        15.11.2024
-# Modifikation: docker-container folder directory moved
+# Modifikation: change docker-compose version
 #####################################################
 
 # Variablen:
-COMPOSEVERSION="v2.27.1"
+COMPOSEVERSION="v2.30.3"
 
 # Betriebssystem und Version prüfen
 OS=$(lsb_release -is)
