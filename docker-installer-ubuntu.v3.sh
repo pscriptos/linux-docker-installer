@@ -1,17 +1,20 @@
 #!/bin/bash
 # Script Name:  docker-installer.v3.sh
-# Beschreibung: Docker & Docker-Compose Installer für Ubuntu 22.04 Jammy und Ubuntu 24.04
-# Aufruf:       bash ./docker-installer.v3.sh
+# Beschreibung: Docker & Docker-Compose Installer für Ubuntu 22.04 und Ubuntu 24.04
 # Autor:        Patrick Asmus
-# Web:          https://www.techniverse.net
+# Web:          https://www.cleveradmin.de
 # Git-Reposit.: https://git.techniverse.net/scriptos/linux-docker-installer
-# Version:      3.4.5
-# Datum:        15.11.2024
-# Modifikation: change docker-compose version
+# Version:      3.5
+# Datum:        13.06.2025
+# Modifikation: compose version changed, zsh plugin handling optimized, opt-in for enable zsh plugin, cleanup
 #####################################################
 
-# Variablen:
-COMPOSEVERSION="v2.30.3"
+# Konfiguration
+USER="root"
+COMPOSEVERSION="v2.37.1"
+DOCKER_ROOT_DIR="/var/lib/docker"
+COMPOSE_DIR="/home/docker-projekte"
+ENABLE_ZSH_PLUGIN=false
 
 # Betriebssystem und Version prüfen
 OS=$(lsb_release -is)
@@ -21,11 +24,6 @@ if [ "$OS" != "Ubuntu" ] || { [ "$VERSION" != "22.04" ] && [ "$VERSION" != "24.0
     echo "Dieses Script unterstützt nur Ubuntu 22.04 und Ubuntu 24.04. Installation abgebrochen."
     exit 1
 fi
-
-# Variablen
-USER="root"
-DOCKER_ROOT_DIR="/var/docker-bin"
-COMPOSE_DIR="/home/docker-container"
 
 # Docker installieren
 sudo apt update
@@ -54,14 +52,28 @@ sudo systemctl start docker
 
 mkdir -p $COMPOSE_DIR
 
-# Docker-compose installieren (gleicher Prozess für beide Versionen)
-sudo apt install -y curl
+# Docker Compose installieren
 sudo curl -L "https://github.com/docker/compose/releases/download/$COMPOSEVERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Optional: Plugin für Oh my ZSH aktivieren
-echo "OhMyZSH Plugin für Docker hinzufügen"
-sudo sed -i 's/plugins=(git)/plugins=(git docker)/g' /root/.zshrc
+# Optional: OhMyZSH Plugin für Docker aktivieren
+if [ "$ENABLE_ZSH_PLUGIN" = true ]; then
+    ZSHRC="/root/.zshrc"
+    echo "OhMyZSH Plugin für Docker prüfen..."
+
+    if grep -q "^plugins=" "$ZSHRC"; then
+        if grep -q "docker" "$ZSHRC"; then
+            echo "Docker ist bereits als Plugin eingetragen – keine Änderung nötig."
+        else
+            echo "Docker wird als Plugin hinzugefügt..."
+            sudo sed -i '/^plugins=/ s/)/ docker)/' "$ZSHRC"
+        fi
+    else
+        echo "WARNUNG: Keine Plugin-Zeile gefunden in $ZSHRC."
+    fi
+else
+    echo "OhMyZSH Plugin-Konfiguration übersprungen (deaktiviert)."
+fi
 
 # Überprüfen der Installation
 docker --version
