@@ -43,7 +43,7 @@ chmod +x docker-installer-ubuntu.v3.sh
 sudo bash ./docker-installer-ubuntu.v3.sh
 ```
 
-[![asciicast](https://asciinema.techniverse.net/a/53.svg)](https://asciinema.it-nerds.com/a/53)
+[![asciicast](https://asciinema.techniverse.net/a/53.svg)](https://asciinema.techniverse.net/a/53)
 
 ---
 
